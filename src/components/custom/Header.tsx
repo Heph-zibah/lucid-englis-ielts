@@ -1,83 +1,90 @@
-import React from "react";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import {SquareMenu} from 'lucide-react'
-import { Button } from "@/components/ui/button";
+import { SquareMenu } from "lucide-react";
+import Link from "next/link";
+import { navLinks } from "@/lib/data";
+
 const Header = () => {
+  const [openNav, setOpenNav] = useState(false);
+
+  const toggleNav = () => {
+    setOpenNav((prev) => !prev);
+  };
+
+  useEffect(() => {
+    if (openNav) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [openNav]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setOpenNav(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <header className="relative pointer-events-auto">
-      <div className='bg-[url("/images/img-1.png")] bg-cover bg-center h-screen relative w-full  bg-black/50 z-0'>
-        <div className="absolute top-0 left-0 w-full h-full bg-black/50 z-0"></div>
-
-        <div className="z-20 fixed top-0 left-0 right-0 shadow-lg">
+    <header className="relative">
+      <div>
+        <div className="z-20 fixed top-0 left-0 right-0 shadow-lg bg-white">
           <div className="px-5 md:px-10 lg:px-0 py-5 lg:max-w-7xl mx-auto flex justify-between items-center">
-            <div className="flex flex-col  text-white text-xl md:text-2xl font-bold uppercase cursor-pointer">
-              <p className="  flex items-center ">
-                {/* backdrop-blur-md bg-white/10 border-b border-white/20 shadow-md"> */}
-                Lucid
-                <Image
-                  src="/images/white-logo.png"
-                  alt="Logo"
-                  width={40}
-                  height={40}
-                  className="h-auto w-auto"
-                />
-              </p>
-              <span className=" ">
-                English <span className="text-[#E30613]">IELTS</span>
-              </span>
+            <div className="flex flex-col cursor-pointer">
+              <Image
+                src="/images/logo-no-bg.png"
+                alt="Logo"
+                width={100}
+                height={100}
+                className="h-auto w-auto"
+              />
             </div>
-            <nav>
-              <ul className="hidden lg:flex gap-20 font-medium text-white ">
-                <li>Home</li>
-                <li>About</li>
-                <li>Pricing</li>
-                <li>Blog</li>
-                <li>Contact</li>
-              </ul>
+            <nav className="lg:flex gap-20 font-medium hidden text-[#003366]">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className="flex gap-20 font-medium"
+                >
+                  {link.title}
+                </Link>
+              ))}
             </nav>
-            <div className="lg:hidden cursor-pointer p-1">
-              <SquareMenu color="#fff" size={30} className="cursor-pointer" />
+            <div className="lg:hidden cursor-pointer p-1" onClick={toggleNav}>
+              <SquareMenu
+                color="#003366"
+                size={30}
+                className="cursor-pointer"
+              />
             </div>
           </div>
         </div>
 
-        <div className="flex  items-center justify-center h-full text-white z-10 relative px-5 md:px-10 lg:px-0 py-5 lg:max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center lg:justify-between ">
-            <div className=" text-center lg:text-start ">
-              <h1 className="text-2xl font-bold md:text-7xl">
-                <span className="text-[#E30613]"> Master</span> the IELTS Exam
-                with Confidence
-              </h1>
-              <p className="mt-4 max-w-xl mx-auto lg:mx-0 text-lg">
-                Learn how to listen, read, speak, and write like a pro — all
-                from the comfort of your home.
-              </p>
-              <div className=" mt-6 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 ">
-                <Button
-                  size="lg"
-                  className=" bg-[#E30613] text-white hover:bg-[#E30613]/90 w-full sm:w-auto"
+        {openNav && (
+          <div className="fixed top-10 left-0 w-full h-full bg-white z-50">
+            <nav className="flex flex-col gap-10 font-medium text-[#003366] items-center pt-10 h-full">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  onClick={() => setOpenNav(false)}
                 >
-                  Get Started
-                </Button>
-                <Button
-                  size="lg"
-                  className=" bg-white text-black hover:bg-gray-200 w-full sm:w-auto"
-                >
-                  Learn More
-                </Button>
-              </div>
-            </div>
-            <div className=" text-center ">
-              <h1 className="text-2xl font-bold md:text-7xl">
-                Master the IELTS Exam with Confidence
-              </h1>
-              <p className="mt-4 max-w-2xl text-lg">
-                Learn how to listen, read, speak, and write like a pro — all
-                from the comfort of your home.
-              </p>
-            </div>
+                  {link.title}
+                </Link>
+              ))}
+            </nav>
           </div>
-        </div>
+        )}
       </div>
     </header>
   );

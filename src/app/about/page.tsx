@@ -1,10 +1,11 @@
 import PageLayout from "@/layout/PageLayout";
-import HeroComponent from "@/components/custom/HeroComponent";
-export default function Home() {
+export default function About() {
   return (
     <div>
       <PageLayout>
-        <HeroComponent />
+        <div>
+          <h1>About</h1>
+        </div>
       </PageLayout>
     </div>
   );

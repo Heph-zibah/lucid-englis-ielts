@@ -122,3 +122,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+body {
+  font-family: "Ubuntu", sans-serif;
+}
+
+.container {
+  @apply max-w-7xl mx-auto sm:px-6 px-5 md:px-10 lg:px-0 py-5 ;
+}
