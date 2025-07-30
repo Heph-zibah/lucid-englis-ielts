@@ -38,8 +38,8 @@ const Header = () => {
   return (
     <header className="relative">
       <div>
-        <div className="z-20 fixed top-0 left-0 right-0 shadow-lg bg-white">
-          <div className="px-5 md:px-10 lg:px-0 py-5 lg:max-w-7xl mx-auto flex justify-between items-center">
+        <div className="z-20 fixed top-0 left-0 right-0 shadow-md bg-white">
+          <div className="px-5 md:px-10 lg:px-0 py-4 lg:max-w-7xl mx-auto flex justify-between items-center">
             <div className="flex flex-col cursor-pointer">
               <Image
                 src="/images/logo-no-bg.png"

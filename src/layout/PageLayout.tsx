@@ -1,6 +1,6 @@
 import React from 'react'
-import Footer from "@/components/custom/Footer";
-import Header from "@/components/custom/Header";
+import Footer from "@/shared/Footer";
+import Header from "@/shared/Header";
 import { LayoutProps } from "@/lib/type";
 const PageLayout = ({children} : LayoutProps) => {
   return (
