@@ -15,11 +15,13 @@ export const formSchema = z
     ref_source: z.string().min(1, "Please tell us how you heard about us."),
     exam_date: z.string().min(1, "Please select your exam date."),
     test_goal: z.string().min(1, "Please tell us why you want to take IELTS."),
-    other_reason: z.string().optional(),
+    goal_reason: z.string().optional(),
+    exam_type: z.string().min(1, "Please tell us the exam you are taking."),
+    exam_reason: z.string().optional(),
   })
-  .refine((data) => data.test_goal !== "other" || !!data.other_reason?.trim(), {
+  .refine((data) => data.test_goal !== "other" || !!data.goal_reason?.trim(), {
     message: "Please specify your reason",
-    path: ["other_reason"],
+    path: ["goal_reason"],
   });
 
 function formatDate(date: Date | undefined) {
@@ -43,11 +45,14 @@ export function useHomePageForm() {
       exam_date: "",
       ref_source: "",
       test_goal: "",
-      other_reason: "",
+      exam_type: "",
+      goal_reason: "",
+      exam_reason: "",
     },
   });
 
   const testGoal = form.watch("test_goal");
+  const examType = form.watch("exam_type");
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState<Date | undefined>();
   const [month, setMonth] = useState<Date | undefined>();
@@ -80,6 +85,7 @@ export function useHomePageForm() {
   return {
     form,
     testGoal,
+    examType,
     open,
     setOpen,
     date,

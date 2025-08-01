@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { refSourceOptions, testGoalOptions } from "@/lib/data";
+import { refSourceOptions, testGoalOptions, examTypeOptions } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { CalendarIcon } from "lucide-react";
@@ -31,6 +31,7 @@ const HomePageForm = () => {
   const {
     form,
     testGoal,
+    examType,
     open,
     setOpen,
     date,
@@ -42,11 +43,19 @@ const HomePageForm = () => {
   } = useHomePageForm();
 
   return (
-    <section className="bg-white p-6 rounded-lg shadow-lg text-black">
+    <section className="bg-white px-6 py-4 rounded-lg shadow-lg text-black">
+      <div>
+        <p className="text-primary font-semibold text-lg">
+          Book Your Class Today!
+        </p>
+        <p className="text-sm mt-1 mb-4 text-muted-foreground">
+          Give us your personal information to get started.
+        </p>
+      </div>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit, handleInvalid)}
-          className="space-y-8"
+          className="space-y-5"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <FormField
@@ -185,10 +194,35 @@ const HomePageForm = () => {
             />
           </div>
 
+          <FormField
+            control={form.control}
+            name="exam_type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Which Exam are you taking?</FormLabel>
+                <Select onValueChange={field.onChange} value={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select an option" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {examTypeOptions.map((option) => (
+                      <SelectItem key={option.value} value={option.value}>
+                        {option.label}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
           {testGoal === "other" && (
             <FormField
               control={form.control}
-              name="other_reason"
+              name="goal_reason"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Please specify</FormLabel>
@@ -203,12 +237,29 @@ const HomePageForm = () => {
               )}
             />
           )}
+          {examType === "other" && (
+            <FormField
+              control={form.control}
+              name="exam_reason"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Please specify</FormLabel>
+                  <FormControl>
+                    <Input placeholder="The type of exam" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
           <Button
             type="submit"
-            className="w-full"
+            className={`w-full ${
+              form.formState.isValid ? "cursor-not-allowed" : "cursor-pointer"
+            }`}
             disabled={!form.formState.isValid}
-            variant={!form.formState.isValid ? "secondary" : "default"}
+            variant={!form.formState.isValid ? "ghost" : "default"}
           >
             Join Our Classes
           </Button>
