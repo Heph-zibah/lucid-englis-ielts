@@ -42,8 +42,12 @@ const Contact = () => {
   });
   const onSubmit = () => {
     toast.success("Message received!", {
-      description:
-        "Thanks for reaching out. We'll get back to you as soon as possible.",
+      description: (
+        <span className="text-sm text-primary font-medium">
+          &quot;Thanks for reaching out. We&apos;ll get back to you as soon as
+          possible.&quot;
+        </span>
+      ),
     });
 
     form.reset();

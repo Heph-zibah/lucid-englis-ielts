@@ -70,8 +70,12 @@ export function useHomePageForm() {
 
   const onSubmit = () => {
     toast.success("You're all set!", {
-      description:
-        "Thanks for signing up for our IELTS classes. We’ll contact you shortly with the next steps!",
+      description: (
+        <span className="text-sm text-primary font-medium">
+          &quot;Thanks for signing up for our IELTS classes. We’ll contact you
+          shortly with the next steps!&quot;,
+        </span>
+      ),
     });
 
     form.reset();
