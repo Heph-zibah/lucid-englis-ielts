@@ -1,12 +1,18 @@
+import React from "react";
 import PageLayout from "@/layout/PageLayout";
-export default function Blog() {
+import HeroComponent from "@/shared/HeroComponent";
+const Blog = () => {
   return (
     <div>
       <PageLayout>
-        <div>
-          <h1>Blog</h1>
-        </div>
+        <HeroComponent
+          title="Insights, Tips & Stories"
+          subtitle="Stay updated with the latest IELTS strategies, student experiences, and educational resources across Africa."
+          backgroundImage="/images/img-4.png"
+        />
       </PageLayout>
     </div>
   );
-}
+};
+
+export default Blog;

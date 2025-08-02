@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { refSourceOptions, testGoalOptions, examTypeOptions } from "@/lib/data";
 import { Button } from "@/components/ui/button";

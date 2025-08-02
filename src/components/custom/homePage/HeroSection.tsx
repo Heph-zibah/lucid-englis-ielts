@@ -6,11 +6,10 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import HomePageForm from "@/components/custom/homePage/HomePageForm";
-
+import CountUp from "react-countup";
 const HeroComponent = () => {
   return (
     <section className="relative bg-black/40 h-full lg:h-screen w-full mt-[5.5rem] pt-4">
-      {/* Background Image */}
       <Image
         src="/images/img-1.png"
         alt="IELTS Training Background"
@@ -19,13 +18,10 @@ const HeroComponent = () => {
         className="-z-20 object-cover object-top"
       />
 
-      {/* Glassmorphism overlay */}
       <div className="absolute inset-0 backdrop-blur-md bg-white/10 -z-10" />
 
-      {/* Gradient overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/20 -z-10" />
 
-      {/* Content */}
       <div className="grid lg:grid-cols-2 gap-10 mt-7 md:mt-14 container">
         <div className=" relative z-10 text-white text-center lg:text-start px-4">
           <motion.h1
@@ -75,14 +71,18 @@ const HeroComponent = () => {
             </Link>
           </motion.div>
 
-          {/* Social Proof */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6, duration: 0.6 }}
             className="mt-6 text-sm text-gray-300"
           >
-            Trusted by 2,000+ students worldwide
+            Trusted by{" "}
+            <span>
+              {" "}
+              <CountUp start={1} end={2000} duration={3} separator="," />
+            </span>
+            + students worldwide
           </motion.p>
 
           {/* Scroll Down Indicator */}

@@ -55,13 +55,15 @@ const Header = () => {
         >
           <div className="px-5 md:px-10 lg:px-0 py-4 lg:max-w-7xl mx-auto flex justify-between items-center">
             <div className="flex flex-col cursor-pointer">
-              <Image
-                src="/images/logo-no-bg.png"
-                alt="Logo"
-                width={100}
-                height={100}
-                className="h-auto w-auto"
-              />
+              <Link href="/">
+                <Image
+                  src="/images/logo-no-bg.png"
+                  alt="Logo"
+                  width={100}
+                  height={100}
+                  className="h-auto w-auto"
+                />
+              </Link>
             </div>
             <nav className="lg:flex gap-20 font-medium hidden text-[#003366]">
               {navLinks.map((link) => (
@@ -79,7 +81,7 @@ const Header = () => {
               ))}
             </nav>
             <Link
-              href="/signup"
+              href="https://wa.me/2348139745464"
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-semibold hidden lg:block"
             >
               Get Started Now

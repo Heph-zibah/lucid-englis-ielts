@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,7 +7,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-100 mt-10 text-sm text-gray-800 border-t">
+    <footer className="bg-gray-100  text-sm text-gray-800 border-t">
       <div className="container mx-auto py-10 px-4 grid gap-10 md:grid-cols-4">
         {/* Logo and tagline */}
         <div>
